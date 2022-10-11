@@ -336,7 +336,7 @@ func (e ConfluenceServerEvent) GetNotificationPost(eventType string) *model.Post
 				Pretext:   message,
 				Title:     e.Blog.Title,
 				TitleLink: e.Blog.URL,
-				Text:      fmt.Sprintf("%s\n\n[**View in Confluence**](%s)", strings.TrimSpace(e.Blog.Excerpt), e.Blog.TinyURL),
+				Text:      fmt.Sprintf("%s\n\n[**View in Confluence**](%s)", strings.TrimSpace(e.Blog.Excerpt), e.Blog.URL),
 			}
 		} else {
 			post.Message = fmt.Sprintf(confluenceServerBlogCreatedWithoutBodyMessage, e.GetUserDisplayName(true), e.GetBlogDisplayName(true), e.GetSpaceDisplayName(true))
