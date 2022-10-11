@@ -75,7 +75,7 @@ exports[`components/ChannelSettingsModal subscription modal snapshot test 1`] = 
           }
           isMulti={false}
           isSearchable={false}
-          label="Subscribe To"
+          label="Subscribe To2"
           name="type"
           onChange={[Function]}
           options={
