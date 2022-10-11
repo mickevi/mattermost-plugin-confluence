@@ -7,21 +7,21 @@ import (
 )
 
 const (
-	CommentCreatedEvent   = "comment_created"
-	CommentUpdatedEvent   = "comment_updated"
-	CommentRemovedEvent   = "comment_removed"
-	PageCreatedEvent      = "page_created"
-	PageUpdatedEvent      = "page_updated"
-	PageTrashedEvent      = "page_trashed"
-	PageRestoredEvent     = "page_restored"
-	PageRemovedEvent      = "page_removed"
-	
-	BlogCreatedEvent      = "blog_created"
-	BlogUpdatedEvent      = "blog_updated"
-	BlogTrashedEvent      = "blog_trashed"
-	BlogRestoredEvent     = "blog_restored"
-	PageRemovedEvent      = "blog_removed"
-	
+	CommentCreatedEvent = "comment_created"
+	CommentUpdatedEvent = "comment_updated"
+	CommentRemovedEvent = "comment_removed"
+	PageCreatedEvent    = "page_created"
+	PageUpdatedEvent    = "page_updated"
+	PageTrashedEvent    = "page_trashed"
+	PageRestoredEvent   = "page_restored"
+	PageRemovedEvent    = "page_removed"
+
+	BlogCreatedEvent  = "blog_created"
+	BlogUpdatedEvent  = "blog_updated"
+	BlogTrashedEvent  = "blog_trashed"
+	BlogRestoredEvent = "blog_restored"
+	BlogRemovedEvent  = "blog_removed"
+
 	SubscriptionTypeSpace = "space_subscription"
 	SubscriptionTypePage  = "page_subscription"
 
@@ -39,12 +39,12 @@ var eventDisplayName = map[string]string{
 	PageTrashedEvent:    "Page Trash",
 	PageRestoredEvent:   "Page Restore",
 	PageRemovedEvent:    "Page Remove",
-	
-	BlogCreatedEvent:    "Blog Create",
-	BlogUpdatedEvent:    "Blog Update",
-	BlogTrashedEvent:    "Blog Trash",
-	BlogRestoredEvent:   "Blog Restore",
-	BlogRemovedEvent:    "Blog Remove",
+
+	BlogCreatedEvent:  "Blog Create",
+	BlogUpdatedEvent:  "Blog Update",
+	BlogTrashedEvent:  "Blog Trash",
+	BlogRestoredEvent: "Blog Restore",
+	BlogRemovedEvent:  "Blog Remove",
 }
 
 type Subscription interface {
