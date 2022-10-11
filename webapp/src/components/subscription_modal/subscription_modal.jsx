@@ -196,7 +196,7 @@ export default class SubscriptionModal extends React.PureComponent {
                     formGroupStyle={getStyle.subscriptionType}
                     isSearchable={false}
                     isMulti={false}
-                    label={'Subscribe To'}
+                    label={'Subscribe To2'}
                     name={'type'}
                     fieldType={'dropDown'}
                     required={true}

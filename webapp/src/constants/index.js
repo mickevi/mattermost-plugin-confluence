@@ -54,7 +54,7 @@ const CONFLUENCE_EVENTS = [
     {
         value: 'blog_removed',
         label: 'Blog Remove',
-    },    
+    },
 ];
 
 const SUBSCRIPTION_TYPE = [
