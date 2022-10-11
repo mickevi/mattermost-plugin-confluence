@@ -35,6 +35,26 @@ const CONFLUENCE_EVENTS = [
         value: 'page_removed',
         label: 'Page Remove',
     },
+    {
+        value: 'blog_created',
+        label: 'Blog Create',
+    },
+    {
+        value: 'blog_updated',
+        label: 'Blog Update',
+    },
+    {
+        value: 'blog_trashed',
+        label: 'Blog Trash',
+    },
+    {
+        value: 'blog_restored',
+        label: 'Blog Restore',
+    },
+    {
+        value: 'blog_removed',
+        label: 'Blog Remove',
+    },    
 ];
 
 const SUBSCRIPTION_TYPE = [
