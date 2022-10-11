@@ -4,19 +4,7 @@ orbs:
   plugin-ci: mattermost/plugin-ci@volatile
 
 workflows:
-  version: 2
-  nightly:
-    triggers:
-      - schedule:
-          cron: "0 0 * * *"
-          filters:
-            branches:
-              only:
-                - master
-    jobs:
-      - plugin-ci/lint
-      - plugin-ci/test
-      - plugin-ci/build
+  version: 2      
   ci:
     jobs:
       - plugin-ci/lint:
