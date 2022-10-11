@@ -54,6 +54,26 @@
             {
                 "event": "page_updated",
                 "url": "/cloud/page_updated?secret={{ .SharedSecret }}"
+            },
+            {
+                "event": "blog_created",
+                "url": "/cloud/blog_created?secret={{ .SharedSecret }}"
+            },
+            {
+                "event": "blog_removed",
+                "url": "/cloud/blog_removed?secret={{ .SharedSecret }}"
+            },
+            {
+                "event": "blog_restored",
+                "url": "/cloud/blog_restored?secret={{ .SharedSecret }}"
+            },
+            {
+                "event": "blog_trashed",
+                "url": "/cloud/blog_trashed?secret={{ .SharedSecret }}"
+            },
+            {
+                "event": "blog_updated",
+                "url": "/cloud/blog_updated?secret={{ .SharedSecret }}"
             }
         ]
     }

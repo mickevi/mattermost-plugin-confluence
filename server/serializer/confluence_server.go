@@ -12,15 +12,23 @@ import (
 )
 
 const (
-	ConfluenceContentTypePage                     = "page"
-	ConfluenceContentTypeBlogPost                 = "blogpost"
-	ConfluenceContentTypeComment                  = "comment"
+	ConfluenceContentTypePage     = "page"
+	ConfluenceContentTypeBlogPost = "blogpost"
+	ConfluenceContentTypeComment  = "comment"
+
 	confluenceServerPageCreatedMessage            = "%s published a new page in %s."
 	confluenceServerPageCreatedWithoutBodyMessage = "%s published a new page %s in %s."
 	confluenceServerPageUpdatedMessage            = "%s updated %s in %s."
 	confluenceServerPageTrashedMessage            = "%s trashed %s in %s."
 	confluenceServerPageRestoredMessage           = "%s restored %s in %s."
 	confluenceServerPageRemovedMessage            = "%s removed **%s** in %s."
+
+	confluenceServerBlogCreatedMessage            = "%s published a new blog in %s."
+	confluenceServerBlogCreatedWithoutBodyMessage = "%s published a new blog %s in %s."
+	confluenceServerBlogUpdatedMessage            = "%s updated %s in %s."
+	confluenceServerBlogTrashedMessage            = "%s trashed %s in %s."
+	confluenceServerBlogRestoredMessage           = "%s restored %s in %s."
+	confluenceServerBlogRemovedMessage            = "%s removed **%s** in %s."
 
 	confluenceServerCommentCreatedMessage      = "%s commented on %s in %s."
 	confluenceServerEmptyCommentCreatedMessage = "%s [commented](%s) on %s in %s."
@@ -319,6 +327,42 @@ func (e ConfluenceServerEvent) GetNotificationPost(eventType string) *model.Post
 		} else {
 			post.Message = message
 		}
+
+	case BlogCreatedEvent:
+		message := fmt.Sprintf(confluenceServerBlogCreatedMessage, e.GetUserDisplayName(true), e.GetSpaceDisplayName(true))
+		if strings.TrimSpace(e.Blog.Excerpt) != "" {
+			attachment = &model.SlackAttachment{
+				Fallback:  message,
+				Pretext:   message,
+				Title:     e.Blog.Title,
+				TitleLink: e.Blog.URL,
+				Text:      fmt.Sprintf("%s\n\n[**View in Confluence**](%s)", strings.TrimSpace(e.Blog.Excerpt), e.Blog.TinyURL),
+			}
+		} else {
+			post.Message = fmt.Sprintf(confluenceServerBlogCreatedWithoutBodyMessage, e.GetUserDisplayName(true), e.GetBlogDisplayName(true), e.GetSpaceDisplayName(true))
+		}
+
+	case BlogUpdatedEvent:
+		message := fmt.Sprintf(confluenceServerBlogUpdatedMessage, e.GetUserDisplayName(true), e.GetBlogDisplayName(true), e.GetSpaceDisplayName(true))
+		if strings.TrimSpace(e.VersionComment) != "" {
+			attachment = &model.SlackAttachment{
+				Fallback: message,
+				Pretext:  message,
+				Text:     fmt.Sprintf("**What’s Changed?**\n> %s\n\n[**View in Confluence**](%s)", strings.TrimSpace(e.VersionComment), e.Blog.URL),
+			}
+		} else {
+			post.Message = message
+		}
+
+	case BlogTrashedEvent:
+		post.Message = fmt.Sprintf(confluenceServerBlogTrashedMessage, e.GetUserDisplayName(true), e.GetBlogDisplayName(true), e.GetSpaceDisplayName(true))
+
+	case BlogRestoredEvent:
+		post.Message = fmt.Sprintf(confluenceServerBlogRestoredMessage, e.GetUserDisplayName(true), e.GetBlogDisplayName(true), e.GetSpaceDisplayName(true))
+
+	case BlogRemovedEvent:
+		// No link for Blog since the Blog was removed
+		post.Message = fmt.Sprintf(confluenceServerBlogRemovedMessage, e.GetUserDisplayName(true), e.GetBlogDisplayName(false), e.GetSpaceDisplayName(true))
 
 	default:
 		return nil
